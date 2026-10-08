@@ -1,0 +1,10 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "nocloudware-site",
+  "compatibility_date": "2026-10-01",
+  // Sitio 100% estatico: Astro prerenderiza las 12 paginas en dist/.
+  // Sin adapter de @astrojs/cloudflare, asi que nada se ejecuta en el Worker.
+  "assets": {
+    "directory": "./dist"
+  }
+}
