@@ -1,20 +1,20 @@
 {
   "turnafile": {
-    "version": "v1.0.2",
-    "sizeMB": "92",
-    "date": "Jun 4, 2026",
-    "downloadUrl": "https://github.com/nocloudware/TurnAFile/releases/latest"
+    "version": "v1.1.1",
+    "sizeMB": "92.7",
+    "date": "Sep 19, 2026",
+    "downloadUrl": "https://github.com/nocloudware/TurnAFile/releases/download/v1.1.1/TurnAFile-1.1.1-Setup.exe"
   },
   "tubemassdl": {
-    "version": "v1.0.0",
-    "sizeMB": "15",
-    "date": "",
-    "downloadUrl": "https://github.com/nocloudware/TubeMassDL/releases/latest"
+    "version": "v1.4.9",
+    "sizeMB": "21.3",
+    "date": "Sep 18, 2026",
+    "downloadUrl": "https://github.com/nocloudware/TubeMassDL/releases/download/v1.4.9/TubeMassDL-1.4.9-Setup.exe"
   },
   "browsel": {
-    "version": "v1.1.8",
-    "sizeMB": "59",
+    "version": "v1.2.0",
+    "sizeMB": "59.0",
     "date": "Oct 7, 2026",
-    "downloadUrl": "https://github.com/nocloudware/BrowSel/releases/latest"
+    "downloadUrl": "https://github.com/nocloudware/BrowSel/releases/download/v1.2.0/BrowSelSetup-1.2.0.exe"
   }
 }
