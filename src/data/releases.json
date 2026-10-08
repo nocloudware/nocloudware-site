@@ -1,0 +1,20 @@
+{
+  "turnafile": {
+    "version": "v1.0.2",
+    "sizeMB": "92",
+    "date": "Jun 4, 2026",
+    "downloadUrl": "https://github.com/nocloudware/TurnAFile/releases/latest"
+  },
+  "tubemassdl": {
+    "version": "v1.0.0",
+    "sizeMB": "15",
+    "date": "",
+    "downloadUrl": "https://github.com/nocloudware/TubeMassDL/releases/latest"
+  },
+  "browsel": {
+    "version": "v1.1.8",
+    "sizeMB": "59",
+    "date": "Oct 7, 2026",
+    "downloadUrl": "https://github.com/nocloudware/BrowSel/releases/latest"
+  }
+}

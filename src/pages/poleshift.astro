@@ -1,0 +1,182 @@
+---
+import Base from '../layouts/Base.astro';
+import { products } from '../data/products';
+import Icon from '../components/Icon.astro';
+const product = products.find((p) => p.slug === 'poleshift')!;
+const jsonLd = {
+  '@context': 'https://schema.org', '@type': 'SoftwareApplication',
+  name: product.name, description: product.description,
+  applicationCategory: product.category === 'Productivity' ? 'UtilitiesApplication' : 'EntertainmentApplication',
+  operatingSystem: product.platform,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  url: `https://www.nocloudware.com/${product.slug}.html`,
+};
+---
+<Base
+  title={"PoleShift · What if the North Pole were elsewhere? | NoCloudware"}
+  description={"PoleShift: a single-file PWA that moves the Earth's axis and shows the planet reordered on a 3D globe. Pick a new North Pole, get the new equator, poles and coastlines. Zero dependencies."}
+  ogImage={"https://www.nocloudware.com/poleshift_logo.webp"}
+  jsonLd={jsonLd}
+  ogType="website"
+>
+  <div class="legacy-main">
+  <div class="container">
+
+    <section class="hero">
+      <img class="hero-banner product-logo-lg" src="/poleshift_logo.webp" alt="PoleShift">
+      <div class="mb-075">
+        <span class="badge-free">PWA · Free</span>
+      </div>
+      <h1>PoleShift</h1>
+      <p>What if you moved the North Pole?<br>Pick any point on the planet and the whole world reorders itself around the new axis.</p>
+      <div class="btn-group">
+        <a class="btn btn-primary" href="https://poleshift.nocloudware.com" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="icon-sm">
+            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+          </svg>
+          Open PoleShift
+        </a>
+        <a class="btn btn-outline" href="https://github.com/nocloudware/PoleShift" target="_blank" rel="noopener">View source code</a>
+      </div>
+      <div class="req-list">Installable PWA · Zero dependencies · No build step · Works offline · Real 3D globe</div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="image" /> Screenshots</h2></div>
+      <div class="screenshot-grid">
+        <a href="/poleshift1.webp" target="_blank" rel="noopener">
+          <img src="/poleshift1.webp" alt="Side panel with the 51 preset places next to the untransformed world map" loading="lazy">
+        </a>
+        <a href="/poleshift2.webp" target="_blank" rel="noopener">
+          <img src="/poleshift2.webp" alt="The 3D globe in its initial state, with the Earth's real axis" loading="lazy">
+        </a>
+        <a href="/poleshift3.webp" target="_blank" rel="noopener">
+          <img src="/poleshift3.webp" alt="Side panel and map after choosing the pole, with the new equator drawn in yellow" loading="lazy">
+        </a>
+        <a href="/poleshift4.webp" target="_blank" rel="noopener">
+          <img src="/poleshift4.webp" alt="The 3D globe reordered around the chosen axis, with equator and poles recalculated" loading="lazy">
+        </a>
+        <a href="/poleshift5.webp" target="_blank" rel="noopener">
+          <img src="/poleshift5.webp" alt="Cities table with current and new latitude, sorted north to south" loading="lazy">
+        </a>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="earth" /> What is PoleShift?</h2></div>
+      <p class="text-muted mb-1">A counterfactual geography toy. Instead of asking where the North Pole is, you decide where it should be — and the app rebuilds the world from scratch: new equator, new poles, new latitudes, on a real rotating 3D globe.</p>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon"><Icon name="map" /></div>
+          <h4>Flat map</h4>
+          <p>The real world, untransformed. Tap any point and it becomes the new North Pole.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><Icon name="globe" /></div>
+          <h4>3D globe</h4>
+          <p>The Earth already reordered around the axis you chose, with equator, poles and coastlines recalculated. Spins on its own, draggable by hand.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><Icon name="building_multiple" /></div>
+          <h4>14 cities</h4>
+          <p>Current latitude and the latitude each city would have in the reordered world, sorted north to south and colour-coded by distance to the new poles and equator.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><Icon name="clipboard_task" /></div>
+          <h4>51 preset places</h4>
+          <p>Set the new North Pole, the new South Pole, or a point that should land on the new equator. Choose one and the other two resync by themselves.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><Icon name="ruler" /></div>
+          <h4>Geometric, not physical</h4>
+          <p>A rigid rotation of the sphere, not a simulation of axial drift or precession. Distances between cities never change — only the latitude assigned to them.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><Icon name="phone" /></div>
+          <h4>Installable PWA</h4>
+          <p>Single HTML file, no build, no bundler, no map library. Installable and works offline.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="wrench" /> How it works</h2></div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <strong>The axis is a vector</strong>
+            <span>Every point on Earth becomes a unit vector. The chosen North Pole is just that vector P; the South Pole is −P and the equator is the plane perpendicular to P.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <strong>The map is rebuilt</strong>
+            <span>An orthonormal basis on the new equatorial plane is built with Gram-Schmidt, then every point is read back as a new latitude and longitude. With P = [0,0,1] the result is the identity.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <strong>The globe is rotated in space</strong>
+            <span>No flattening: points are rotated straight into the new basis and drawn with an orthographic projection. The back half is clipped to a circle — that clipping is what makes it look like a sphere.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-text">
+            <strong>Three selectors, one calculation</strong>
+            <span>New pole, new south pole and a point on the new equator are the same maths inverted in three directions.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="wrench" /> Technologies</h2></div>
+      <div class="card-grid">
+        <div class="card"><h3>Single HTML file</h3><p>HTML, CSS, logic, data and the three drawing canvases in 513 lines</p></div>
+        <div class="card"><h3>Canvas 2D</h3><p>Flat map, 3D globe and city list, all hand-drawn</p></div>
+        <div class="card"><h3>3D cartesian maths</h3><p>Unit vectors, Gram-Schmidt, orthographic projection, trigonometry</p></div>
+        <div class="card"><h3>Plain-text geodata</h3><p>286 nested coastline polygons, 14 cities and 51 places as plain lists</p></div>
+        <div class="card"><h3>Web App Manifest</h3><p>Installable, portrait orientation, themed</p></div>
+        <div class="card"><h3>Service Worker</h3><p>Network-first for the HTML, cache-first for icons and manifest</p></div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section class="text-center">
+      <h2 class="mb-075 fs-lg">Move the pole</h2>
+      <p class="text-muted mb-15">Free, no account, nothing to install to try it.</p>
+      <div class="btn-group">
+        <a class="btn btn-primary" href="https://poleshift.nocloudware.com" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="icon-sm">
+            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+          </svg>
+          Open PoleShift
+        </a>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <div class="donate-section">
+      <h3> Support the creator</h3>
+      <p>NoCloudware is an independent project by <strong>Adrian Goodrich</strong>.</p>
+      <a class="btn btn-donate" href="/donate.html"> Support the project</a>
+    </div>
+
+  </div>
+</div>
+
+</Base>

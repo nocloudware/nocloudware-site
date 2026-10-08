@@ -1,0 +1,145 @@
+---
+import Base from '../layouts/Base.astro';
+import { products } from '../data/products';
+import Icon from '../components/Icon.astro';
+const product = products.find((p) => p.slug === 'sigilforge')!;
+const jsonLd = {
+  '@context': 'https://schema.org', '@type': 'SoftwareApplication',
+  name: product.name, description: product.description,
+  applicationCategory: product.category === 'Productivity' ? 'UtilitiesApplication' : 'EntertainmentApplication',
+  operatingSystem: product.platform,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  url: `https://www.nocloudware.com/${product.slug}.html`,
+};
+---
+<Base
+  title={"SigilForge · Procedural sigil generator | NoCloudware"}
+  description={"SigilForge: procedural sigil, magic circle and mandala generator. 100% free, installable PWA, works offline."}
+  ogImage={"https://www.nocloudware.com/sigilforge1.webp"}
+  jsonLd={jsonLd}
+  ogType="website"
+>
+  <div class="legacy-main">
+  <div class="container">
+
+    <section class="hero">
+      <img class="hero-banner product-logo-lg" src="/sigilforge_logo.webp" alt="SigilForge">
+      <div class="mb-075">
+        <span class="badge-free">PWA · 100% Free</span>
+      </div>
+      <h1>SigilForge</h1>
+      <p>Procedural magic circle and sigil generator.<br>Installable, offline, PNG export.</p>
+      <div class="btn-group">
+        <a class="btn btn-primary" href="https://nocloudware.github.io/SigilForge/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="icon-sm">
+            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+          </svg>
+          Open SigilForge
+        </a>
+        <a class="btn btn-outline" href="https://github.com/nocloudware/SigilForge" target="_blank" rel="noopener">View source code</a>
+      </div>
+      <div class="req-list">Installable PWA · Works offline · Cross-platform</div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="image" /> Explore SigilForge</h2></div>
+      <div class="sigil-gallery">
+        <div class="sigil-main">
+          <img id="sigilMain" src="/sigilforge1.webp" alt="SigilForge - Full view" onclick="window.open(this.src,'_blank')">
+        </div>
+        <div class="sigil-thumbs">
+          <div class="sigil-thumb active" onclick="sigilSelect('sigilforge1.webp', this)"><img src="/sigilforge1.webp" alt="Full view" loading="lazy"></div>
+          <div class="sigil-thumb" onclick="sigilSelect('sigilforge2.webp', this)"><img src="/sigilforge2.webp" alt="Global settings" loading="lazy"></div>
+          <div class="sigil-thumb" onclick="sigilSelect('sigilforge3.webp', this)"><img src="/sigilforge3.webp" alt="Circle generation" loading="lazy"></div>
+          <div class="sigil-thumb" onclick="sigilSelect('sigilforge4.webp', this)"><img src="/sigilforge4.webp" alt="Draw options" loading="lazy"></div>
+          <div class="sigil-thumb" onclick="sigilSelect('sigilforge5.webp', this)"><img src="/sigilforge5.webp" alt="Text rings" loading="lazy"></div>
+          <div class="sigil-thumb" onclick="sigilSelect('sigilforge6.webp', this)"><img src="/sigilforge6.webp" alt="Symbol library" loading="lazy"></div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="sparkle" /> What is SigilForge?</h2></div>
+      <p class="text-muted mb-1">A creative, free, installable tool. Generates mandalas, magic circles and geometric patterns procedurally.</p>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon"><Icon name="wand" /></div>
+          <h4>5 libraries</h4>
+          <p>Alchemical, Celestial, Runic, Geometric.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><Icon name="paint_brush" /></div>
+          <h4>Total control</h4>
+          <p>Colors, geometry, text and seed.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><Icon name="phone" /></div>
+          <h4>Installable PWA</h4>
+          <p>Works offline on any device.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><Icon name="save" /></div>
+          <h4>Export PNG</h4>
+          <p>High resolution, no watermark.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="target_arrow" /> Who it's for</h2></div>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="icon"><Icon name="paint_brush" /></div>
+          <h3>Artists & designers</h3>
+          <p>Visual inspiration and unique patterns.</p>
+        </div>
+        <div class="why-card">
+          <div class="icon"><Icon name="pen" /></div>
+          <h3>Writers</h3>
+          <p>Symbols for fictional worlds.</p>
+        </div>
+        <div class="why-card">
+          <div class="icon"><Icon name="ruler" /></div>
+          <h3>Hobbyists</h3>
+          <p>Sacred geometry and mandalas.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <div class="donate-section">
+      <h3> Support the creator</h3>
+      <p>NoCloudware is an independent project by <strong>Adrian Goodrich</strong>.</p>
+      <a class="btn btn-donate" href="/donate.html"> Support the project</a>
+    </div>
+
+  </div>
+</div>
+  <Fragment slot="scripts">
+    <script is:inline>
+  function sigilSelect(src, el) {
+    document.getElementById('sigilMain').src = src;
+    document.querySelectorAll('.sigil-thumb').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+  }
+</script>
+  </Fragment>
+
+<style is:global>
+    .sigil-gallery { display: flex; flex-direction: column; align-items: center; }
+    .sigil-main { width:100%; max-width:480px; aspect-ratio:16/10; display:flex; align-items:center; justify-content:center; background:var(--aether-surface); border-radius:12px; border:1px solid var(--aether-border); box-shadow:0 8px 24px var(--aether-shadow); overflow:hidden; margin-bottom:1rem; }
+    .sigil-main img { width:100%; height:100%; object-fit:contain; cursor:pointer; }
+    .sigil-thumbs { display:flex; flex-wrap:nowrap; justify-content:center; gap:0.5rem; width:100%; overflow-x:auto; padding:0.25rem 0; }
+    .sigil-thumb { flex-shrink:0; width:64px; aspect-ratio:16/10; border-radius:6px; overflow:hidden; border:2px solid transparent; cursor:pointer; transition:all 0.15s; background:var(--aether-surface); }
+    .sigil-thumb:hover { border-color:var(--aether-accent); transform:translateY(-2px); }
+    .sigil-thumb.active { border-color:var(--aether-accent); }
+    .sigil-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+  </style>
+</Base>

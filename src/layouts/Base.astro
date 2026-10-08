@@ -1,0 +1,67 @@
+---
+import '../styles/base.css';
+import '../styles/legacy.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  ogType?: string;
+  jsonLd?: Record<string, unknown>;
+}
+const { title, description, ogImage = '/ncw_banner_cloudy.webp', ogType = 'website', jsonLd } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const image = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro.site).href;
+const org = {
+  '@context': 'https://schema.org', '@type': 'Organization', name: 'NoCloudware',
+  url: 'https://www.nocloudware.com', logo: 'https://www.nocloudware.com/ncw_logo_cloudy.webp',
+};
+---
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta name="theme-color" content="#1E1E1E" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#F5F7FA" media="(prefers-color-scheme: light)" />
+
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={image} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:type" content={ogType} />
+  <meta property="og:site_name" content="NoCloudware" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Fija el tema antes del primer pintado: evita el parpadeo -->
+  <script is:inline>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('ncw-theme'); } catch (e) {}
+      if (t !== 'light' && t !== 'dark') {
+        t = window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+      document.documentElement.dataset.theme = t;
+    })();
+  </script>
+
+  <script type="application/ld+json" set:html={JSON.stringify(org)} />
+  {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+  <slot name="head" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <Header />
+  <main id="main" class="legacy-main-wrap"><slot /></main>
+  <Footer />
+  <script is:inline defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "a7b5a7c2f8c846e489e5c5b4b8f9a5c1"}'></script>
+  <slot name="scripts" />
+</body>
+</html>

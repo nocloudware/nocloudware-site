@@ -1,0 +1,176 @@
+---
+import Base from '../layouts/Base.astro';
+import { products } from '../data/products';
+import Icon from '../components/Icon.astro';
+const product = products.find((p) => p.slug === 'archmiedos')!;
+const jsonLd = {
+  '@context': 'https://schema.org', '@type': 'SoftwareApplication',
+  name: product.name, description: product.description,
+  applicationCategory: product.category === 'Productivity' ? 'UtilitiesApplication' : 'EntertainmentApplication',
+  operatingSystem: product.platform,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  url: `https://www.nocloudware.com/${product.slug}.html`,
+};
+---
+<Base
+  title={"Archivo de Miedos · Deposit your fear | NoCloudware"}
+  description={"Archivo de Miedos: an anonymous place to deposit your fears and leave them behind. AI-classified, AI-moderated, PWA. Share anonymously on Bluesky."}
+  ogImage={"https://www.nocloudware.com/archmiedos_logo.webp"}
+  jsonLd={jsonLd}
+  ogType="website"
+>
+  <div class="legacy-main">
+  <div class="container">
+
+    <section class="hero">
+      <img class="hero-banner product-logo-lg" src="/archmiedos_logo.webp" alt="Archivo de Miedos">
+      <div class="mb-075">
+        <span class="badge-free">PWA · Free</span>
+      </div>
+      <h1>Archivo de Miedos</h1>
+      <p>Deposit your fear in the archive and free yourself.<br>Anonymous, no account, no judgement. AI-classified and AI-moderated.</p>
+      <div class="btn-group">
+        <a class="btn btn-primary" href="https://archmiedos.nocloudware.com" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="icon-sm">
+            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+          </svg>
+          Open Archivo de Miedos
+        </a>
+        <a class="btn btn-outline" href="https://github.com/nocloudware/ArchMiedos" target="_blank" rel="noopener">View source code</a>
+      </div>
+      <div class="req-list">Installable PWA · Anonymous · No account · AI-classified · Bluesky sharing</div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="image" /> Screenshots</h2></div>
+      <div class="screenshot-grid">
+        <a href="/archmiedos1.webp" target="_blank" rel="noopener">
+          <img src="/archmiedos1.webp" alt="Archivo de Miedos landing page" loading="lazy">
+        </a>
+        <a href="/archmiedos2.webp" target="_blank" rel="noopener">
+          <img src="/archmiedos2.webp" alt="Archivo de Miedos filing cabinets" loading="lazy">
+        </a>
+        <a href="/archmiedos3.webp" target="_blank" rel="noopener">
+          <img src="/archmiedos3.webp" alt="Archivo de Miedos fear card" loading="lazy">
+        </a>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="folder" /> What is Archivo de Miedos?</h2></div>
+      <p class="text-muted mb-1">A secret 1950s office where people leave their fears — in writing, anonymously. Some find relief just by writing it down. Others find comfort discovering they're not alone.</p>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon"><Icon name="glasses" /></div>
+          <h4>Truly anonymous</h4>
+          <p>No name, email or personal data. No accounts, no profiles, no tracking.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><Icon name="bot" /></div>
+          <h4>AI-classified</h4>
+          <p>An AI identifies the real fear behind each deposit and files it in the right cabinet by theme.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><Icon name="shield" /></div>
+          <h4>AI-moderated</h4>
+          <p>Every fear passes automatic AI review, and human review when needed, to keep the space safe.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><Icon name="people" /></div>
+          <h4>Support & strength</h4>
+          <p>React with <Icon name="people" /> Apoyo or <Icon name="trophy" /> Fuerza to tell a stranger: "I read you, you're not alone."</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><Icon name="circle" /></div>
+          <h4>Bluesky sharing</h4>
+          <p>Share any fear anonymously on @archmiedos.bsky.social with a card showing its text and date.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><Icon name="phone" /></div>
+          <h4>Installable PWA</h4>
+          <p>Works offline, installable on any device. Retro 50s style, modern animations.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="clipboard_task" /> How it works</h2></div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <strong>Write your fear</strong>
+            <span>10 to 300 characters. No account, no email. Just type and deposit.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <strong>AI files it</strong>
+            <span>An AI classifies the real theme and files it in one of 9 office cabinets (A-C, D-F, G-I…).</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <strong>Explore the archive</strong>
+            <span>Open a drawer and browse the cards as a carousel. Search by keyword inside any drawer.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-text">
+            <strong>React or share</strong>
+            <span>Leave a <Icon name="people" /> or <Icon name="trophy" />, or share the fear anonymously on Bluesky.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="wrench" /> Technologies</h2></div>
+      <div class="card-grid">
+        <div class="card"><h3>Cloudflare Pages</h3><p>PWA frontend</p></div>
+        <div class="card"><h3>Cloudflare Workers</h3><p>API and business logic</p></div>
+        <div class="card"><h3>D1</h3><p>SQLite database for fears and reactions</p></div>
+        <div class="card"><h3>Workers AI</h3><p>Classification + moderation (Llama Guard 3 8B)</p></div>
+        <div class="card"><h3>AtProto</h3><p>Anonymous Bluesky sharing</p></div>
+        <div class="card"><h3>Service Worker</h3><p>Offline-capable installable PWA</p></div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section class="text-center">
+      <h2 class="mb-075 fs-lg">Deposit your fear</h2>
+      <p class="text-muted mb-15">Free, anonymous, no account.</p>
+      <div class="btn-group">
+        <a class="btn btn-primary" href="https://archmiedos.nocloudware.com" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="icon-sm">
+            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+          </svg>
+          Open Archivo de Miedos
+        </a>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <div class="donate-section">
+      <h3> Support the creator</h3>
+      <p>NoCloudware is an independent project by <strong>Adrian Goodrich</strong>.</p>
+      <a class="btn btn-donate" href="/donate.html"> Support the project</a>
+    </div>
+
+  </div>
+</div>
+
+</Base>

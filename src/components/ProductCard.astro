@@ -1,0 +1,43 @@
+---
+import { href, type Product } from '../data/products';
+import releases from '../data/releases.json';
+
+interface Props { product: Product }
+const { product: p } = Astro.props;
+const version = p.release ? releases[p.release]?.version : undefined;
+---
+<a class="product-card" href={href(p.slug)}>
+  <div class="product-head">
+    <img src={`/${p.logo}`} alt="" width="44" height="44" loading="lazy" />
+    <div>
+      <h3>{p.name}</h3>
+      <span class="platform">{p.platform}</span>
+    </div>
+  </div>
+  <p class="desc">{p.description}</p>
+  <ul class="chips">{p.chips.map((c) => <li>{c}</li>)}</ul>
+  <div class="foot"><span class="free">Free</span>{version && <span class="ver">{version}</span>}</div>
+</a>
+
+<style>
+  .product-card {
+    display: flex; flex-direction: column; gap: .75rem; height: 100%;
+    padding: 1.25rem; color: var(--aether-text);
+    background: var(--aether-surface); border: 1px solid var(--aether-border); border-radius: var(--radius-card);
+    transition: border-color .12s, background-color .12s;
+  }
+  .product-card:hover { border-color: var(--aether-accent); background: var(--aether-surface-hover); text-decoration: none; }
+  .product-head { display: flex; align-items: center; gap: .85rem; }
+  .product-head img { width: 44px; height: 44px; object-fit: contain; flex-shrink: 0; }
+  h3 { font-size: 1.15rem; font-weight: 600; }
+  .platform { font-size: .8rem; color: var(--aether-text-muted); }
+  .desc { font-size: .92rem; color: var(--aether-text-secondary); flex: 1; }
+  .chips { display: flex; flex-wrap: wrap; gap: .35rem; padding: 0; list-style: none; }
+  .chips li {
+    font-size: .78rem; padding: .15rem .55rem; color: var(--aether-text-secondary);
+    border: 1px solid var(--aether-border); border-radius: var(--radius-pill);
+  }
+  .foot { display: flex; gap: .75rem; align-items: baseline; padding-top: .75rem; border-top: 1px solid var(--aether-border); font-size: .85rem; }
+  .free { color: var(--aether-green-text); font-weight: 600; }
+  .ver { color: var(--aether-text-muted); }
+</style>

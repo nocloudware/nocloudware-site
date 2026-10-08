@@ -1,0 +1,32 @@
+/*
+  PUENTE AETHER -> KUMO (para tus apps de Cloudflare).
+  Impórtalo DESPUÉS de "@cloudflare/kumo/styles" en esas apps. Redefine los tokens
+  semánticos de Kumo con los valores de Aether, para que sus componentes se vean
+  igual que esta web y que tus apps WinUI 3.
+  Nombres tomados de @cloudflare/kumo/styles/theme-kumo.css (v2.x); si Kumo los
+  renombra en una versión mayor, este es el único archivo a revisar.
+*/
+:root {
+  --color-kumo-base:       var(--aether-surface);
+  --color-kumo-canvas:     var(--aether-bg);
+  --color-kumo-elevated:   var(--aether-surface);
+  --color-kumo-recessed:   var(--aether-bg);
+  --color-kumo-control:    var(--aether-surface);
+  --color-kumo-fill:       var(--aether-surface-hover);
+  --color-kumo-fill-hover: var(--aether-surface-hover);
+  --color-kumo-line:       var(--aether-border);
+  --color-kumo-hairline:   var(--aether-border);
+  --color-kumo-brand:      var(--aether-accent);
+  --color-kumo-brand-hover: var(--aether-accent-hover);
+  --color-kumo-focus:      var(--aether-accent);
+  --color-kumo-danger:     var(--aether-red);
+  --color-kumo-success:    var(--aether-green);
+  --color-kumo-warning:    var(--aether-gold);
+
+  --text-color-kumo-default:  var(--aether-text);
+  --text-color-kumo-strong:   var(--aether-text);
+  --text-color-kumo-subtle:   var(--aether-text-secondary);
+  --text-color-kumo-inactive: var(--aether-text-muted);
+  --text-color-kumo-link:     var(--aether-accent-text);
+  --text-color-kumo-brand:    var(--aether-accent-text);
+}

@@ -1,0 +1,41 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+---
+<Base
+  title={"About · NoCloudware"}
+  description={"NoCloudware: independent software by Adrian Goodrich. Licensed once or free, with no subscriptions, monthly fees or pay-per-use."}
+  ogImage={"https://www.nocloudware.com/ncw_logo_cloudy.webp"}
+  ogType="website"
+>
+  <div class="legacy-main">
+  <div class="container">
+    <section style="max-width:750px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:2rem;">
+        <img src="/ncw_logo_cloudy.webp" alt="NoCloudware" class="product-logo-lg">
+      </div>
+      <h1>About NoCloudware</h1>
+      <div class="mission-text">
+        <p>NoCloudware was born from a frustration with the monthly subscription culture that turns software into perpetual rent, and with pay-per-use pricing that keeps a meter running on every task.</p>
+        <p>The project started with <strong>TurnAFile</strong>, a file converter I needed for personal use and didn't want to depend on the internet.</p>
+        <p><strong>SigilForge</strong> came from a creative need. I decided to give it away to the community.</p>
+        <p><strong>PoleShift</strong> is a geography toy: pick a new North Pole and the planet reorders itself around it, in a single HTML file with no map libraries.</p>
+        <p><strong>TubeMassDL</strong> was built to solve the hassle of downloading media from multiple sites without cloud dependencies or subscriptions.</p>
+        <p><strong>Bluesk-AI</strong> is a Chilean conversational bot for Bluesky — serverless, free, and honest about its limits.</p>
+        <p><strong>Archivo de Miedos</strong> is an anonymous, AI-classified space to deposit fears, with Bluesky sharing built in.</p>
+        <p>Today, NoCloudware is a small independent studio with a clear mission: <strong>develop software you own: licensed once or free, with no subscriptions, monthly fees or pay-per-use</strong>.</p>
+      </div>
+
+      <h2><Icon name="mail" /> Contact</h2>
+      <p class="text-muted">For technical support, licensing questions or suggestions: <a href="mailto:nocloudware@outlook.com" style="color:var(--aether-accent);font-weight:600;">nocloudware@outlook.com</a></p>
+
+      <h2><Icon name="money" /> Support the project</h2>
+      <p class="text-muted">NoCloudware is an independent project by <strong>Adrian Goodrich</strong>. If you value software without subscriptions, consider supporting its development.</p>
+      <div class="btn-group">
+        <a class="btn btn-donate" href="/donate.html"> Support the project</a>
+      </div>
+    </section>
+  </div>
+</div>
+
+</Base>

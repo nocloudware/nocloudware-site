@@ -1,0 +1,85 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import { categories, byCategory, href } from '../data/products';
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isCurrent = (h: string) => (h === '/' ? path === '/' : path === h.replace('.html', '') || path === h);
+---
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/">
+      <img src="/ncw_logo_cloudy.webp" alt="" width="35" height="28" />
+      NoCloudware
+    </a>
+
+    <nav id="site-nav" class="site-nav" aria-label="Main">
+      <a href="/" aria-current={isCurrent('/') ? 'page' : undefined}>Home</a>
+      {categories.map((c) => (
+        <div class="nav-group">
+          <button type="button" class:list={['nav-group-btn', { 'is-current': byCategory(c).some((p) => isCurrent(href(p.slug))) }]} aria-expanded="false" aria-haspopup="true">{c}</button>
+          <div class="nav-dropdown">
+            {byCategory(c).map((p) => (
+              <a href={href(p.slug)} aria-current={isCurrent(href(p.slug)) ? 'page' : undefined}>
+                <img src={`/${p.logo}`} alt="" width="20" height="20" loading="lazy" />{p.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+      <a href="/about.html" aria-current={isCurrent('/about.html') ? 'page' : undefined}>About</a>
+      <a href="/donate.html" aria-current={isCurrent('/donate.html') ? 'page' : undefined}>Donate</a>
+    </nav>
+
+    <ThemeToggle />
+    <button type="button" class="icon-btn nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>('.site-header')!;
+  const menuBtn = header.querySelector<HTMLButtonElement>('.nav-toggle')!;
+  const groups = [...header.querySelectorAll<HTMLElement>('.nav-group')];
+
+  const closeGroups = (except?: HTMLElement) =>
+    groups.forEach((g) => {
+      if (g === except) return;
+      g.removeAttribute('data-open');
+      g.querySelector('.nav-group-btn')?.setAttribute('aria-expanded', 'false');
+    });
+  const closeMenu = () => {
+    header.removeAttribute('data-open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    menuBtn.setAttribute('aria-label', 'Open menu');
+  };
+
+  menuBtn.addEventListener('click', () => {
+    const open = header.toggleAttribute('data-open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+
+  groups.forEach((g) => {
+    const btn = g.querySelector<HTMLButtonElement>('.nav-group-btn')!;
+    btn.addEventListener('click', () => {
+      const open = g.toggleAttribute('data-open');
+      btn.setAttribute('aria-expanded', String(open));
+      closeGroups(g);
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!header.contains(e.target as Node)) { closeGroups(); closeMenu(); }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { closeGroups(); closeMenu(); }
+  });
+
+  // Tema: el atributo data-theme ya lo fijó el script del <head> antes de pintar.
+  document.getElementById('theme-toggle')?.addEventListener('click', () => {
+    const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem('ncw-theme', next); } catch {}
+  });
+</script>

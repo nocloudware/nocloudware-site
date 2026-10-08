@@ -1,0 +1,11 @@
+---
+// Iconos Fluent UI System Icons (MIT), los mismos que usan las apps WinUI 3.
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
+interface Props { name: string }
+const { name } = Astro.props;
+const file = join(process.cwd(), 'node_modules/@fluentui/svg-icons/icons', `${name}_20_regular.svg`);
+const svg = readFileSync(file, 'utf8').replace('<svg ', '<svg class="ico" fill="currentColor" aria-hidden="true" focusable="false" ');
+---
+<Fragment set:html={svg} />

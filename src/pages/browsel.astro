@@ -1,0 +1,210 @@
+---
+import Base from '../layouts/Base.astro';
+import { products } from '../data/products';
+import Icon from '../components/Icon.astro';
+import releases from '../data/releases.json';
+const release = releases['browsel'];
+const product = products.find((p) => p.slug === 'browsel')!;
+const jsonLd = {
+  '@context': 'https://schema.org', '@type': 'SoftwareApplication',
+  name: product.name, description: product.description,
+  applicationCategory: product.category === 'Productivity' ? 'UtilitiesApplication' : 'EntertainmentApplication',
+  operatingSystem: product.platform,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  url: `https://www.nocloudware.com/${product.slug}.html`,
+};
+---
+<Base
+  title={"BrowSel · Pick the browser and profile for every link | NoCloudware"}
+  description={"BrowSel: pick which browser and which profile opens a link on Windows. Every installed browser, every profile, the ones already running marked. Free, local, open source."}
+  ogImage={"https://www.nocloudware.com/browsel_logo.webp"}
+  jsonLd={jsonLd}
+  ogType="website"
+>
+  <div class="legacy-main">
+  <div class="container">
+
+    <section class="hero">
+      <img class="hero-banner product-logo-lg" src="/browsel_logo.webp" alt="BrowSel">
+      <div class="mb-075">
+        <span class="badge-free">100% Free · Open Source{release?.version ? ` ${release.version}` : ''}</span>
+      </div>
+      <h1>BrowSel</h1>
+      <p>Pick which browser and which profile opens a link.<br>Windows can only send a link to one program — BrowSel is the one that asks.</p>
+      <div class="btn-group">
+        <a class="btn btn-primary" href={release?.downloadUrl ?? "https://github.com/nocloudware/BrowSel/releases/latest"} target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="icon-sm">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download free
+        </a>
+        <a class="btn btn-outline" href="https://github.com/nocloudware/BrowSel" target="_blank" rel="noopener">View source code</a>
+      </div>
+      <div class="req-list">Windows 10 2004+ / Windows 11 · 64-bit · <span>{release?.sizeMB ?? "~59"}</span> MB · No internet required · Released <span>{release?.date || "Oct 7, 2026"}</span></div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="image" /> Screenshots</h2></div>
+      <div class="screenshot-grid">
+        <a href="https://raw.githubusercontent.com/nocloudware/BrowSel/main/BrowSel-main.png" target="_blank" rel="noopener">
+          <img src="https://raw.githubusercontent.com/nocloudware/BrowSel/main/BrowSel-main.png" alt="The BrowSel picker showing browser profiles and the Editor and Copy actions" loading="lazy">
+        </a>
+        <a href="https://raw.githubusercontent.com/nocloudware/BrowSel/main/BrowSel-expanded.jpg" target="_blank" rel="noopener">
+          <img src="https://raw.githubusercontent.com/nocloudware/BrowSel/main/BrowSel-expanded.jpg" alt="An expanded profile list inside BrowSel" loading="lazy">
+        </a>
+        <a href="https://raw.githubusercontent.com/nocloudware/BrowSel/main/BrowSel-config.png" target="_blank" rel="noopener">
+          <img src="https://raw.githubusercontent.com/nocloudware/BrowSel/main/BrowSel-config.png" alt="BrowSel's Settings dialog with browser selection and language options" loading="lazy">
+        </a>
+        <a href="https://raw.githubusercontent.com/nocloudware/BrowSel/main/BrowSel-about.png" target="_blank" rel="noopener">
+          <img src="https://raw.githubusercontent.com/nocloudware/BrowSel/main/BrowSel-about.png" alt="BrowSel's About dialog showing the app icon, version and credits" loading="lazy">
+        </a>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="target_arrow" /> How it works</h2></div>
+      <p class="text-muted mb-1">BrowSel takes Windows' link handler and turns it into a question instead of a fixed answer.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <strong>BrowSel becomes the link handler</strong>
+            <span>The installer registers it for HTTP and HTTPS. You confirm it once in Windows Settings.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <strong>Click any link</strong>
+            <span>Instead of always opening in the same browser, the BrowSel picker shows up.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <strong>Choose browser and profile</strong>
+            <span>Every installed browser, every profile it has — with the ones already running marked.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-text">
+            <strong>The link goes where you picked</strong>
+            <span>Open it, drop it into your editor as text, or copy it to the clipboard.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="sparkle" /> Features</h2></div>
+      <div class="card-grid">
+        <div class="card">
+          <h3><Icon name="desktop" /> Browser + profile picker</h3>
+          <p>Every installed browser and every profile it has, in one list.</p>
+        </div>
+        <div class="card">
+          <h3><Icon name="checkmark_circle" /> Running profiles marked</h3>
+          <p>The profiles already open are flagged, so you can tell at a glance.</p>
+        </div>
+        <div class="card">
+          <h3><Icon name="note" /> Open in your editor</h3>
+          <p>Drops the link as text into the editor Windows uses for text files.</p>
+        </div>
+        <div class="card">
+          <h3><Icon name="clipboard_task" /> Copy</h3>
+          <p>Puts the link on the clipboard and closes. Nothing else happens.</p>
+        </div>
+        <div class="card">
+          <h3><Icon name="globe" /> 10 languages</h3>
+          <p>Follows the operating system; you can override it in Settings.</p>
+        </div>
+        <div class="card">
+          <h3><Icon name="arrow_sync" /> Updates from the app</h3>
+          <p>Checks the latest GitHub release and offers to install it.</p>
+        </div>
+        <div class="card">
+          <h3><Icon name="dark_theme" /> Light & dark</h3>
+          <p>Follows the system, with the Mica backdrop on Windows 11.</p>
+        </div>
+        <div class="card">
+          <h3><Icon name="lock_closed" /> 100% local</h3>
+          <p>No telemetry, no account. The link never leaves your computer.</p>
+        </div>
+        <div class="card">
+          <h3><Icon name="lock_open" /> Open source</h3>
+          <p>MIT licensed. Code available on GitHub.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="globe" /> Available languages</h2></div>
+      <div class="lang-pills">
+        <span class="lang-pill">🇬🇧 English</span>
+        <span class="lang-pill">🇪🇸 Español</span>
+        <span class="lang-pill">🇫🇷 Français</span>
+        <span class="lang-pill">🇷🇺 Русский</span>
+        <span class="lang-pill">🇨🇳 中文</span>
+        <span class="lang-pill">🇯🇵 日本語</span>
+        <span class="lang-pill">🇵🇹 Português</span>
+        <span class="lang-pill">🇮🇳 हिन्दी</span>
+        <span class="lang-pill">🇸🇦 العربية</span>
+        <span class="lang-pill">🇧🇩 বাংলা</span>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="wrench" /> Technologies</h2></div>
+      <div class="card-grid">
+        <div class="card"><h3>.NET 10</h3><p>Application framework</p></div>
+        <div class="card"><h3>WinUI 3</h3><p>Native Windows interface</p></div>
+        <div class="card"><h3>Windows App SDK</h3><p>Carried along, nothing else to install</p></div>
+        <div class="card"><h3>Mica backdrop</h3><p>Translucent surface, solid color on Windows 10</p></div>
+        <div class="card"><h3>System.Management</h3><p>Finds installed browsers and their profiles</p></div>
+        <div class="card"><h3>Inno Setup</h3><p>Installer, Start menu entry and handler registration</p></div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section class="text-center">
+      <h2 class="mb-075 fs-lg">Download it free</h2>
+      <p class="text-muted mb-15">No account, no subscription, no cloud.</p>
+      <div class="btn-group">
+        <a class="btn btn-primary" href={release?.downloadUrl ?? "https://github.com/nocloudware/BrowSel/releases/latest"} target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="icon-sm">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download from GitHub
+        </a>
+      </div>
+      <div class="req-list mt-075">Windows 10 2004+ / Windows 11 · 64-bit · <span>{release?.sizeMB ?? "~59"}</span> MB</div>
+    </section>
+
+    <hr class="section-divider">
+
+    <div class="donate-section">
+      <h3> Support the creator</h3>
+      <p>NoCloudware is an independent project by <strong>Adrian Goodrich</strong>.</p>
+      <a class="btn btn-donate" href="/donate.html"> Support the project</a>
+    </div>
+
+  </div>
+</div>
+
+</Base>

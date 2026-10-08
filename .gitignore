@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.astro/
+.vs/
+links imagenes.txt
+*.jpg
+*.png
+!public/apple-touch-icon.png

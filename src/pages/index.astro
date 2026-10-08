@@ -1,0 +1,115 @@
+---
+import Base from '../layouts/Base.astro';
+import ProductCard from '../components/ProductCard.astro';
+import { categories, byCategory } from '../data/products';
+---
+<Base
+  title="NoCloudware: tools that live with you"
+  description="Software you own, not that you rent. TurnAFile, TubeMassDL, BrowSel, SigilForge, PoleShift, Bluesk-AI and Archivo de Miedos: pay once with a license or use them free. No subscriptions, monthly fees or pay-per-use."
+>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <h1>Software you own. Not that you rent.</h1>
+        <p>Tools you license once or use for free. No subscriptions, no monthly fees, no pay-per-use.</p>
+        <div class="btn-group">
+          <a class="btn btn-primary" href="#tools">Browse the tools</a>
+          <a class="btn btn-outline" href="/about.html">About the project</a>
+        </div>
+      </div>
+      <figure class="hero-shot">
+        <img class="shot-dark" src="/TubeMassDL_en_dark.webp" width="1088" height="744" alt="TubeMassDL downloading a playlist, dark theme" fetchpriority="high" />
+        <img class="shot-light" src="/TubeMassDL_en_light.webp" width="1088" height="744" alt="TubeMassDL downloading a playlist, light theme" loading="lazy" />
+        <figcaption>TubeMassDL, a native Windows app. The same Aether theme you see on this site.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="tools" class="tools">
+    <div class="container">
+      <h2>The tools</h2>
+      {categories.map((c) => (
+        <div class="group">
+          <h3>{c}</h3>
+          <div class:list={['grid', byCategory(c).length === 3 ? 'cols-3' : 'cols-2']}>
+            {byCategory(c).map((p) => <ProductCard product={p} />)}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="why">
+    <div class="container">
+      <h2>A license, not a subscription</h2>
+      <div class="table-wrap">
+        <table>
+          <caption class="sr-only">Subscription software compared with NoCloudware licensing</caption>
+          <thead><tr><th scope="col"></th><th scope="col">Subscription software</th><th scope="col" class="us">NoCloudware</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">How you pay</th><td>A subscription, monthly or yearly</td><td class="us">One license payment, or free</td></tr>
+            <tr><th scope="row">Usage fees</th><td>Charges by usage, credits or seats</td><td class="us">No pay-per-use charges</td></tr>
+            <tr><th scope="row">If you stop paying</th><td>You lose access</td><td class="us">You keep what you bought</td></tr>
+            <tr><th scope="row">Where it runs</th><td>Always on the provider's servers</td><td class="us">On your PC or online, depending on the tool</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="support">
+    <div class="container">
+      <div class="support-inner">
+      <h2>Support the creator</h2>
+      <p>NoCloudware is an independent project by Adrian Goodrich. If a tool saved you time, you can help keep them coming.</p>
+      <a class="btn btn-donate" href="/donate.html">Support the project</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  section { margin: 0; }
+  h2 { font-size: var(--fs-h2); margin-bottom: 1.5rem; }
+
+  /* Hero: la captura real de la app es lo memorable de la página */
+  .hero { padding: clamp(2.5rem, 2rem + 4vw, 5rem) 0 var(--space-section); text-align: left; }
+  .hero-grid { display: grid; gap: 2.5rem; align-items: center; }
+  .hero h1 { font-size: var(--fs-hero); font-weight: 650; letter-spacing: -0.02em; line-height: 1.08; margin-bottom: 1rem; }
+  .hero-copy p { font-size: 1.15rem; color: var(--aether-text-secondary); max-width: 32rem; margin: 0 0 1.75rem; }
+  .hero-shot { margin: 0; }
+  .hero-shot img {
+    display: block; width: 100%; height: auto;
+    border-radius: var(--radius-card); border: 1px solid var(--aether-border);
+    box-shadow: 0 24px 60px var(--aether-shadow);
+  }
+  .hero-shot .shot-light { display: none; }
+  :global(:root[data-theme="light"]) .hero-shot .shot-light { display: block; }
+  :global(:root[data-theme="light"]) .hero-shot .shot-dark { display: none; }
+  figcaption { margin-top: .75rem; font-size: var(--fs-small); color: var(--aether-text-muted); }
+  @media (min-width: 900px) { .hero-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 3.5rem; } }
+
+  .tools { padding-bottom: var(--space-section); }
+  .group + .group { margin-top: 2.5rem; }
+  .group > h3 { font-size: 1.05rem; font-weight: 600; color: var(--aether-text-secondary); margin-bottom: .85rem; }
+  .grid { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+  @media (min-width: 640px) { .grid.cols-2, .grid.cols-3 { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 960px) { .grid.cols-3 { grid-template-columns: repeat(3, 1fr); } }
+
+  .why { padding-bottom: var(--space-section); }
+  .table-wrap { overflow-x: auto; border: 1px solid var(--aether-border); border-radius: var(--radius-card); background: var(--aether-surface); }
+  table { width: 100%; border-collapse: collapse; }
+  @media (max-width: 640px) { th, td { padding: .7rem .65rem; font-size: .88rem; } tbody th { width: 28%; } }
+  th, td { text-align: left; padding: .9rem 1.1rem; border-bottom: 1px solid var(--aether-border); font-size: .95rem; }
+  tbody tr:last-child > * { border-bottom: 0; }
+  thead th { font-size: .85rem; color: var(--aether-text-muted); font-weight: 600; }
+  tbody th { font-weight: 600; width: 22%; }
+  td { color: var(--aether-text-secondary); }
+  .us { color: var(--aether-text); background: var(--aether-accent-soft); }
+  thead .us { color: var(--aether-accent-text); }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  .support { padding-bottom: var(--space-section); }
+  .support-inner { max-width: 40rem; }
+  .support p { color: var(--aether-text-secondary); margin-bottom: 1.25rem; }
+</style>

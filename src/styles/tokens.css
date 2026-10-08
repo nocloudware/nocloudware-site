@@ -1,0 +1,52 @@
+/*
+  Aether tokens: fuente única de color, tipografía, radios y espaciado.
+  Los valores son los de tu sistema actual; la estructura (light-dark + color-scheme)
+  es la misma que usa Kumo, así que se pueden compartir con tus apps de Cloudflare.
+  Los radios siguen WinUI 3: 4px controles, 8px paneles y overlays.
+*/
+:root {
+  color-scheme: light dark;
+
+  --aether-bg:            light-dark(#F5F7FA, #1E1E1E);
+  --aether-surface:       light-dark(#FFFFFF, #2A2A2A);
+  --aether-surface-hover: light-dark(#EEF2F7, #353535);
+  --aether-border:        light-dark(#D8DEE6, #3A3A3A);
+
+  /* --aether-accent-text cumple contraste AA como texto sobre el fondo */
+  --aether-accent:        #4A9EFF;
+  --aether-accent-hover:  #6AB8FF;
+  --aether-accent-text:   light-dark(#0B63C5, #4A9EFF);
+  --aether-accent-soft:   light-dark(rgba(74,158,255,.14), rgba(74,158,255,.12));
+  --aether-on-accent:     #08203A;
+
+  --aether-green:         #7CBA3D;
+  --aether-green-text:    light-dark(#3D6E12, #7CBA3D);
+  --aether-gold:          light-dark(#8A6500, #F0C040);
+  --aether-gold-soft:     light-dark(rgba(240,192,64,.18), rgba(240,192,64,.10));
+  --aether-red:           #E81123;
+
+  --aether-text:           light-dark(#1E1E1E, #F5F5F5);
+  --aether-text-secondary: light-dark(#4A5260, #B0B0B0);
+  --aether-text-muted:     light-dark(#5E6874, #9A9A9A);
+
+  --aether-shadow: light-dark(rgba(0,0,0,.08), rgba(0,0,0,.35));
+
+  /* Forma (WinUI 3) */
+  --radius-control: 4px;
+  --radius-card: 8px;
+  --radius-pill: 999px;
+
+  /* Tipografía: Segoe UI Variable en Windows 11, fuente del sistema en el resto */
+  --font-ui: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Segoe UI Variable Display", "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  --fs-hero: clamp(2.25rem, 1.1rem + 4.6vw, 3.75rem);
+  --fs-h2:   clamp(1.45rem, 1.1rem + 1.2vw, 1.9rem);
+  --fs-small: 0.875rem;
+
+  --space-section: clamp(3rem, 2rem + 4vw, 5.5rem);
+  --header-h: 3.75rem;
+}
+
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"]  { color-scheme: dark; }

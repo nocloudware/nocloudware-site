@@ -1,0 +1,98 @@
+/*
+  Clases de las páginas migradas (productos, about, donate, legales), reescritas con
+  los tokens Aether. A medida que rediseñes cada página, estas clases se irán
+  reemplazando por componentes y este archivo debería ir encogiendo.
+*/
+.legacy-main { padding-block: 2.5rem 4rem; }
+section { margin-block: 2.5rem; }
+.legacy-main h1 { font-size: clamp(1.8rem, 1.2rem + 2vw, 2.4rem); }
+.hero { text-align: center; padding: 2rem 0 1rem; }
+.hero p { color: var(--aether-text-secondary); max-width: 40rem; margin: .75rem auto 1.25rem; }
+.hero img { border-radius: var(--radius-card); }
+
+.section-title { margin-bottom: 1.5rem; }
+.section-title h2 { font-size: var(--fs-h2); margin-bottom: .4rem; }
+.section-title p { color: var(--aether-text-secondary); font-size: .95rem; }
+.section-divider { border: 0; height: 1px; background: var(--aether-border); margin: 2.5rem 0; }
+
+.panel, .feature-card, .card, .why-card, .step, .lang-pill {
+  background: var(--aether-surface); border: 1px solid var(--aether-border); border-radius: var(--radius-card);
+}
+.panel { padding: 1.5rem; }
+.panel-hover { transition: border-color .12s; }
+.panel-hover:hover { border-color: var(--aether-accent); }
+
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1rem; }
+.feature-card { padding: 1.25rem; }
+.feature-icon { font-size: 1.6rem; margin-bottom: .5rem; }
+.feature-card h4 { font-size: 1rem; margin-bottom: .35rem; }
+.feature-card p { font-size: .88rem; color: var(--aether-text-secondary); }
+
+.card-grid, .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: .85rem; }
+.card, .why-card { padding: 1rem 1.15rem; }
+.why-card { text-align: center; padding: 1.25rem; }
+.why-card .icon { font-size: 1.7rem; margin-bottom: .4rem; }
+.card h3, .why-card h3 { font-size: .95rem; margin-bottom: .35rem; display: flex; gap: .4rem; }
+.why-card h3 { justify-content: center; }
+.card p, .why-card p { font-size: .85rem; color: var(--aether-text-secondary); line-height: 1.5; }
+
+.steps { display: flex; flex-direction: column; gap: .75rem; }
+.step { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem 1.2rem; }
+.step-num {
+  flex-shrink: 0; width: 1.7rem; height: 1.7rem; margin-top: 1px; border-radius: 50%;
+  display: grid; place-items: center; font-weight: 700; font-size: .85rem;
+  background: var(--aether-accent); color: var(--aether-on-accent);
+}
+.step-text strong { display: block; font-size: .95rem; }
+.step-text span { color: var(--aether-text-secondary); font-size: .88rem; }
+
+.lang-pills { display: flex; flex-wrap: wrap; gap: .5rem; }
+.lang-pill { padding: .3rem .8rem; font-size: .85rem; border-radius: var(--radius-pill); }
+
+.screenshot-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: .85rem; }
+.screenshot-grid img { width: 100%; border-radius: var(--radius-card); border: 1px solid var(--aether-border); }
+
+.req-list { font-size: .85rem; color: var(--aether-text-muted); margin-top: .5rem; }
+
+.compact-table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+.compact-table th, .compact-table td { padding: .6rem .8rem; border-bottom: 1px solid var(--aether-border); text-align: left; }
+.compact-table th { color: var(--aether-text-muted); font-weight: 600; font-size: .8rem; }
+.compact-table td { color: var(--aether-text-secondary); }
+.compact-table .highlight { color: var(--aether-text); font-weight: 600; }
+
+.faq-item { margin-bottom: 1rem; }
+.faq-question { font-weight: 600; color: var(--aether-text); margin-bottom: .2rem; }
+.faq-answer { font-size: .9rem; color: var(--aether-text-secondary); }
+
+.mission-text { color: var(--aether-text-secondary); line-height: 1.75; }
+.mission-text p { margin-bottom: 1rem; }
+.donate-section { text-align: center; padding: 2rem 1rem; margin: 2rem auto; max-width: 32rem; }
+.donate-section p { color: var(--aether-text-secondary); margin: .5rem 0 1rem; }
+.text-center { text-align: center; }
+.text-muted { color: var(--aether-text-secondary); }
+
+/* Sustitutos de estilos inline que se repetían */
+.icon-sm { width: 18px; height: 18px; }
+.mb-1 { margin-bottom: 1rem; } .mb-075 { margin-bottom: .75rem; } .mb-15 { margin-bottom: 1.5rem; } .mb-2 { margin-bottom: 2rem; }
+.mt-075 { margin-top: .75rem; }
+.fs-lg { font-size: 1.6rem; }
+.product-logo-lg { width: 80px; height: 80px; object-fit: contain; border: 0; box-shadow: none; }
+.badge-free {
+  display: inline-block; padding: 2px 10px; border-radius: var(--radius-pill);
+  background: var(--aether-green); color: #0a1a12; font-weight: 700; font-size: .75rem;
+}
+
+/* Iconos Fluent */
+.ico { width: 1.1em; height: 1.1em; vertical-align: -0.2em; flex-shrink: 0; }
+h2 .ico, h3 .ico { margin-right: .4em; color: var(--aether-accent-text); }
+.feature-icon .ico, .why-card .icon .ico { width: 1.9rem; height: 1.9rem; color: var(--aether-accent-text); }
+.btn .ico { vertical-align: middle; }
+
+/* Cabecera de producto como superficie Fluent */
+.legacy-main .hero {
+  background: linear-gradient(180deg, var(--aether-accent-soft), transparent 70%), var(--aether-surface);
+  border: 1px solid var(--aether-border); border-radius: var(--radius-card);
+  padding: clamp(1.75rem, 1rem + 3vw, 3rem) 1.25rem;
+}
+.legacy-main .hero .btn-group { justify-content: center; }
+.card, .feature-card { min-width: 0; overflow-wrap: anywhere; }

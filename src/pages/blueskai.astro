@@ -1,0 +1,178 @@
+---
+import Base from '../layouts/Base.astro';
+import { products } from '../data/products';
+import Icon from '../components/Icon.astro';
+const product = products.find((p) => p.slug === 'blueskai')!;
+const jsonLd = {
+  '@context': 'https://schema.org', '@type': 'SoftwareApplication',
+  name: product.name, description: product.description,
+  applicationCategory: product.category === 'Productivity' ? 'UtilitiesApplication' : 'EntertainmentApplication',
+  operatingSystem: product.platform,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  url: `https://www.nocloudware.com/${product.slug}.html`,
+};
+---
+<Base
+  title={"Bluesk-AI · AI bot for Bluesky | NoCloudware"}
+  description={"Bluesk-AI: a Chilean conversational bot for Bluesky with ecological awareness. Real-time search, RAG with Chilean slang, dual AI, 100% serverless on Cloudflare Workers."}
+  ogImage={"https://www.nocloudware.com/blueskai_logo.webp"}
+  jsonLd={jsonLd}
+  ogType="website"
+>
+  <div class="legacy-main">
+  <div class="container">
+
+    <section class="hero">
+      <img class="hero-banner product-logo-lg" src="/blueskai_logo.webp" alt="Bluesk-AI">
+      <div class="mb-075">
+        <span class="badge-free">Bluesky Bot · Free</span>
+      </div>
+      <h1>Bluesk-AI</h1>
+      <p>A conversational Chilean bot for Bluesky with ecological awareness.<br>Real-time search, RAG with Chilean slang, dual AI with automatic fallback.</p>
+      <div class="btn-group">
+        <a class="btn btn-outline" href="https://bsky.app/profile/bluesk-ai.bsky.social" target="_blank" rel="noopener">View @bluesk-ai on Bluesky</a>
+        <a class="btn btn-outline" href="https://bluesk-ai-synthesis.bluesk-ai.workers.dev" target="_blank" rel="noopener">Bluesk-AI Síntesis</a>
+      </div>
+      <div class="req-list">100% serverless · Cloudflare Workers · No VPS · No API keys for search</div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="news" /> Published work</h2></div>
+      <p class="text-muted mb-1">Bluesk-AI also publishes synthesis reports with cited sources. Below is an example of a publication from its Síntesis feed.</p>
+      <div class="screenshot-grid">
+        <a href="/blueskai_sintesis.webp" target="_blank" rel="noopener">
+          <img src="/blueskai_sintesis.webp" alt="Bluesk-AI Síntesis website" loading="lazy">
+        </a>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="bot" /> What it does</h2></div>
+      <p class="text-muted mb-1">Bluesk-AI is a bot that lives on Bluesky: you mention it and it replies. It reads what's happening in real time, interprets the question, and answers in natural Chilean Spanish. It is not a downloadable app — it runs entirely on the cloud, serverless.</p>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon"><Icon name="search" /></div>
+          <h4>Real-time multi-search</h4>
+          <p>Weather, currency, news, earthquakes, holidays, crypto and more — from free public sources, no API keys.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><Icon name="chat" /></div>
+          <h4>RAG with Chilean slang</h4>
+          <p>A vector bank of 2,327 modismos and 7,496 phrases interprets your input and polishes every reply.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><Icon name="brain_circuit" /></div>
+          <h4>Dual AI with fallback</h4>
+          <p>Mistral Nemo as the main model, llama 3.2 3B on Cloudflare Workers AI as automatic backup.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><Icon name="branch_fork" /></div>
+          <h4>Thread replies</h4>
+          <p>Up to 5 posts per reply, split by sentence, max 300 characters per post.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><Icon name="clock" /></div>
+          <h4>Scheduled posts</h4>
+          <p>Good mornings, good nights and random phrases — all in Chilean time.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><Icon name="leaf_one" /></div>
+          <h4>Ecological excuses</h4>
+          <p>When the daily limit is reached, it answers with humorous environmental excuses.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="clipboard_task" /> How it works</h2></div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <strong>Mention @bluesk-ai</strong>
+            <span>Any post mentioning the bot on Bluesky is picked up within a minute.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <strong>Real-time search</strong>
+            <span>If the question is about current events, it queries free public sources in parallel.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <strong>RAG + dual AI</strong>
+            <span>Chilean slang enriches the prompt and the reply. Two-pass RAG, then the model responds.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-text">
+            <strong>Reply as a thread</strong>
+            <span>The answer is published as a reply thread — up to 5 posts, split by sentence.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="building_factory" /> Architecture</h2></div>
+      <p class="text-muted mb-1">Everything runs in a single Cloudflare Worker: the API, the mention polling, and the scheduler. There is no external bot server and no VPS.</p>
+      <div class="card-grid">
+        <div class="card"><h3><Icon name="globe" /> One worker</h3><p>API + polling + scheduler in a single deployment</p></div>
+        <div class="card"><h3><Icon name="server" /> D1 + KV</h3><p>SQLite for data, KV for daily limits and sessions</p></div>
+        <div class="card"><h3><Icon name="library" /> Vectorize</h3><p>Two RAG indexes: modismos and phrases (bge-m3, 1024 dims)</p></div>
+        <div class="card"><h3>⏰ Cron every minute</h3><p>Polls mentions and runs scheduled posts</p></div>
+        <div class="card"><h3><Icon name="lock_closed" /> Minimal surface</h3><p>Only /api/health is public; the admin page requires a token</p></div>
+        <div class="card"><h3><Icon name="flash" /> Free tier</h3><p>Workers, D1, KV and Vectorize are free; optional external AI</p></div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="wrench" /> Technologies</h2></div>
+      <div class="card-grid">
+        <div class="card"><h3>Cloudflare Workers</h3><p>Serverless runtime</p></div>
+        <div class="card"><h3>D1 + KV</h3><p>SQLite database and sessions</p></div>
+        <div class="card"><h3>Vectorize</h3><p>RAG with bge-m3 embeddings (1024 dims)</p></div>
+        <div class="card"><h3>Mistral Nemo</h3><p>Main AI model</p></div>
+        <div class="card"><h3>llama 3.2 3B</h3><p>Automatic fallback on Workers AI</p></div>
+        <div class="card"><h3>AtProto</h3><p>Bluesky API integration</p></div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="shield" /> What it won't do</h2></div>
+      <div class="card-grid">
+        <div class="card"><h3>No opinions</h3><p>Rejects subjective questions — it has no opinions on what you should do.</p></div>
+        <div class="card"><h3>No images or documents</h3><p>Doesn't analyze images, PDFs or long documents.</p></div>
+        <div class="card"><h3>No deep analysis</h3><p>Rejects research, thesis and complex analysis requests.</p></div>
+        <div class="card"><h3>Never replies to itself</h3><p>Its own mentions are always ignored.</p></div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <div class="donate-section">
+      <h3> Support the creator</h3>
+      <p>NoCloudware is an independent project by <strong>Adrian Goodrich</strong>.</p>
+      <a class="btn btn-donate" href="/donate.html"> Support the project</a>
+    </div>
+
+  </div>
+</div>
+
+</Base>

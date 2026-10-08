@@ -1,0 +1,223 @@
+---
+import Base from '../layouts/Base.astro';
+import { products } from '../data/products';
+import Icon from '../components/Icon.astro';
+import releases from '../data/releases.json';
+const release = releases['turnafile'];
+const product = products.find((p) => p.slug === 'turnafile')!;
+const jsonLd = {
+  '@context': 'https://schema.org', '@type': 'SoftwareApplication',
+  name: product.name, description: product.description,
+  applicationCategory: product.category === 'Productivity' ? 'UtilitiesApplication' : 'EntertainmentApplication',
+  operatingSystem: product.platform,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  url: `https://www.nocloudware.com/${product.slug}.html`,
+};
+---
+<Base
+  title={"TurnAFile · All-in-one converter for Windows | NoCloudware"}
+  description={"TurnAFile: all-in-one media and document converter for Windows. Convert video, audio, images, documents, data — free, local, no internet required."}
+  ogImage={"https://raw.githubusercontent.com/nocloudware/TurnAFile/main/Assets/Screenshots/TurnAFile-main-light.png"}
+  jsonLd={jsonLd}
+  ogType="website"
+>
+  <div class="legacy-main">
+  <div class="container">
+
+    <section class="hero">
+      <img class="hero-banner product-logo-lg" src="/icon-toggles.webp" alt="TurnAFile">
+      <div class="mb-075">
+        <span class="badge-free">100% Free · Open Source{release?.version ? ` ${release.version}` : ''}</span>
+      </div>
+      <h1>TurnAFile</h1>
+      <p>All-in-one media and document converter for Windows.<br>Right-click, choose format, done.</p>
+      <div class="btn-group">
+        <a class="btn btn-primary" href={release?.downloadUrl ?? "https://github.com/nocloudware/TurnAFile/releases/latest"} target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="icon-sm">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download free
+        </a>
+        <a class="btn btn-outline" href="https://github.com/nocloudware/TurnAFile" target="_blank" rel="noopener">View source code</a>
+      </div>
+      <div class="req-list">Windows 10/11 · 64-bit · <span>{release?.sizeMB ?? "~92"}</span> MB · No internet required · Released <span>{release?.date || "Jun 4, 2026"}</span></div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="image" /> Screenshots</h2></div>
+      <div class="screenshot-grid">
+        <a href="https://raw.githubusercontent.com/nocloudware/TurnAFile/main/Assets/Screenshots/TurnAFile-main-light.png" target="_blank" rel="noopener">
+          <img src="https://raw.githubusercontent.com/nocloudware/TurnAFile/main/Assets/Screenshots/TurnAFile-main-light.png" alt="TurnAFile light theme" loading="lazy">
+        </a>
+        <a href="https://raw.githubusercontent.com/nocloudware/TurnAFile/main/Assets/Screenshots/TurnAFile-main-dark.png" target="_blank" rel="noopener">
+          <img src="https://raw.githubusercontent.com/nocloudware/TurnAFile/main/Assets/Screenshots/TurnAFile-main-dark.png" alt="TurnAFile dark theme" loading="lazy">
+        </a>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="target_arrow" /> How it works</h2></div>
+      <p class="text-muted mb-1">TurnAFile integrates into the Windows context menu. No app needed.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <strong>Right-click the file</strong>
+            <span>Works with any supported file directly from Explorer.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <strong>"Convert with TurnAFile"</strong>
+            <span>The context menu shows only compatible formats for your file.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <strong>Choose output format</strong>
+            <span>The file converts immediately to your chosen format.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-text">
+            <strong>Converted in the same folder</strong>
+            <span>No extra steps, nothing uploaded to the internet.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="box" /> Supported formats</h2></div>
+      <div class="card-grid">
+        <div class="card">
+          <h3><Icon name="video" /> Video</h3>
+          <p>MP4, AVI, MKV, MOV, WebM, WMV, FLV → MP4, AVI, MKV, MOV, MP3, M4A</p>
+        </div>
+        <div class="card">
+          <h3><Icon name="music_note_1" /> Audio</h3>
+          <p>MP3, WAV, FLAC, M4A, OGG, AAC, WMA</p>
+        </div>
+        <div class="card">
+          <h3><Icon name="image" /> Image</h3>
+          <p>JPG, PNG, WebP, GIF, BMP, TIFF → +PDF, TXT (OCR)</p>
+        </div>
+        <div class="card">
+          <h3><Icon name="document" /> Documents</h3>
+          <p>DOCX, PDF, TXT, HTML, MD, RTF, ODT, EPUB</p>
+        </div>
+        <div class="card">
+          <h3><Icon name="data_bar_vertical" /> Data</h3>
+          <p>XLSX, CSV, JSON → PDF with font scaling</p>
+        </div>
+        <div class="card">
+          <h3><Icon name="search" /> OCR</h3>
+          <p>Extract text from images. Auto-detects system language.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="sparkle" /> Features</h2></div>
+      <div class="card-grid">
+        <div class="card">
+          <h3><Icon name="cursor_click" /> Context menu</h3>
+          <p>Right-click any supported file in Explorer. No need to open the app.</p>
+        </div>
+        <div class="card">
+          <h3><Icon name="folder" /> Batch conversion</h3>
+          <p>Process multiple files simultaneously, each with its own format.</p>
+        </div>
+        <div class="card">
+          <h3><Icon name="dark_theme" /> Light & dark themes</h3>
+          <p>Properly applied across all windows — main, About, Licenses, Progress.</p>
+        </div>
+        <div class="card">
+          <h3><Icon name="globe" /> 7 languages</h3>
+          <p>EN, ES, FR, DE, 中文, 日本語, Português.</p>
+        </div>
+        <div class="card">
+          <h3><Icon name="lock_closed" /> 100% local</h3>
+          <p>Your files never leave your computer. No internet required.</p>
+        </div>
+        <div class="card">
+          <h3><Icon name="lock_open" /> Open source</h3>
+          <p>MIT licensed. Code available on GitHub.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="globe" /> Available languages</h2></div>
+      <div class="lang-pills">
+        <span class="lang-pill">🇬🇧 English</span>
+        <span class="lang-pill">🇪🇸 Español</span>
+        <span class="lang-pill">🇫🇷 Français</span>
+        <span class="lang-pill">🇩🇪 Deutsch</span>
+        <span class="lang-pill">🇨🇳 中文</span>
+        <span class="lang-pill">🇯🇵 日本語</span>
+        <span class="lang-pill">🇵🇹 Português</span>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="wrench" /> Technologies</h2></div>
+      <div class="card-grid">
+        <div class="card"><h3>.NET 8.0 WPF</h3><p>Application framework</p></div>
+        <div class="card"><h3>FFmpeg</h3><p>Video/audio conversion</p></div>
+        <div class="card"><h3>QuestPDF</h3><p>PDF generation</p></div>
+        <div class="card"><h3>Open XML SDK</h3><p>DOCX read/write</p></div>
+        <div class="card"><h3>ClosedXML</h3><p>XLSX read/write</p></div>
+        <div class="card"><h3>Tesseract OCR</h3><p>Optical Character Recognition</p></div>
+        <div class="card"><h3>PdfPig</h3><p>PDF text extraction</p></div>
+        <div class="card"><h3>WPF-UI</h3><p>Modern UI controls library</p></div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section class="text-center">
+      <h2 class="mb-075 fs-lg">Download it free</h2>
+      <p class="text-muted mb-15">No account, no subscription, no cloud.</p>
+      <div class="btn-group">
+        <a class="btn btn-primary" href={release?.downloadUrl ?? "https://github.com/nocloudware/TurnAFile/releases/latest"} target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="icon-sm">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download from GitHub
+        </a>
+      </div>
+      <div class="req-list mt-075">Windows 10/11 · 64-bit · <span>{release?.sizeMB ?? "~92"}</span> MB</div>
+    </section>
+
+    <hr class="section-divider">
+
+    <div class="donate-section">
+      <h3> Support the creator</h3>
+      <p>NoCloudware is an independent project by <strong>Adrian Goodrich</strong>.</p>
+      <a class="btn btn-donate" href="/donate.html"> Support the project</a>
+    </div>
+
+  </div>
+</div>
+
+</Base>

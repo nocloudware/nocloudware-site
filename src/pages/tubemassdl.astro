@@ -1,0 +1,228 @@
+---
+import Base from '../layouts/Base.astro';
+import { products } from '../data/products';
+import Icon from '../components/Icon.astro';
+import releases from '../data/releases.json';
+const release = releases['tubemassdl'];
+const product = products.find((p) => p.slug === 'tubemassdl')!;
+const jsonLd = {
+  '@context': 'https://schema.org', '@type': 'SoftwareApplication',
+  name: product.name, description: product.description,
+  applicationCategory: product.category === 'Productivity' ? 'UtilitiesApplication' : 'EntertainmentApplication',
+  operatingSystem: product.platform,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  url: `https://www.nocloudware.com/${product.slug}.html`,
+};
+---
+<Base
+  title={"TubeMassDL · Mass video downloader | NoCloudware"}
+  description={"TubeMassDL: mass link downloader for YouTube and 1800+ sites. Clipboard capture, playlist expansion, concurrent downloads, multi-language, dark/light theme."}
+  ogImage={"https://raw.githubusercontent.com/nocloudware/TubeMassDL/main/en_dark.png"}
+  jsonLd={jsonLd}
+  ogType="website"
+>
+  <div class="legacy-main">
+  <div class="container">
+
+    <section class="hero">
+      <img class="hero-banner product-logo-lg" src="/tubemassdl_logo.webp" alt="TubeMassDL">
+      <div class="mb-075">
+        <span class="badge-free">100% Free · Open Source{release?.version ? ` ${release.version}` : ''}</span>
+      </div>
+      <h1>TubeMassDL</h1>
+      <p>Mass link downloader for YouTube and 1800+ sites.<br>Clipboard capture, playlist expansion, concurrent downloads.</p>
+      <div class="btn-group">
+        <a class="btn btn-primary" href={release?.downloadUrl ?? "https://github.com/nocloudware/TubeMassDL/releases/latest"} target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="icon-sm">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download free
+        </a>
+        <a class="btn btn-outline" href="https://github.com/nocloudware/TubeMassDL" target="_blank" rel="noopener">View source code</a>
+      </div>
+      <div class="req-list">Windows 10/11 · 64-bit · <span>{release?.sizeMB ?? "~15"}</span> MB · .NET 8.0 · yt-dlp</div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="image" /> Screenshots</h2></div>
+      <div class="screenshot-grid">
+        <a href="https://raw.githubusercontent.com/nocloudware/TubeMassDL/main/en_dark.png" target="_blank" rel="noopener">
+          <img src="https://raw.githubusercontent.com/nocloudware/TubeMassDL/main/en_dark.png" alt="TubeMassDL English dark theme" loading="lazy">
+        </a>
+        <a href="https://raw.githubusercontent.com/nocloudware/TubeMassDL/main/en_light.png" target="_blank" rel="noopener">
+          <img src="https://raw.githubusercontent.com/nocloudware/TubeMassDL/main/en_light.png" alt="TubeMassDL English light theme" loading="lazy">
+        </a>
+        <a href="https://raw.githubusercontent.com/nocloudware/TubeMassDL/main/es_dark.png" target="_blank" rel="noopener">
+          <img src="https://raw.githubusercontent.com/nocloudware/TubeMassDL/main/es_dark.png" alt="TubeMassDL Spanish dark theme" loading="lazy">
+        </a>
+        <a href="https://raw.githubusercontent.com/nocloudware/TubeMassDL/main/es_light.png" target="_blank" rel="noopener">
+          <img src="https://raw.githubusercontent.com/nocloudware/TubeMassDL/main/es_light.png" alt="TubeMassDL Spanish light theme" loading="lazy">
+        </a>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="clipboard_task" /> How it works</h2></div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <strong>Copy any link</strong>
+            <span>Copy a URL from YouTube, Vimeo, TikTok, or any of 1800+ supported sites.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <strong>Auto-captured</strong>
+            <span>Links are captured automatically from the clipboard — no manual input required.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <strong>Configure & download</strong>
+            <span>Choose video/audio, quality, format, and hit download. Supports concurrent downloads.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-text">
+            <strong>Done</strong>
+            <span>Real-time progress bars, status counters, and automatic file organization.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="flash" /> Features</h2></div>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon"><Icon name="clipboard_task" /></div>
+          <h4>Clipboard Auto-Capture</h4>
+          <p>Links appear in the queue as you copy them. Supports YouTube, Vimeo, TikTok, Instagram, and more.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><Icon name="folder_open" /></div>
+          <h4>Playlist Expansion</h4>
+          <p>Copy a playlist URL — all entries are fetched automatically via yt-dlp with tree display.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><Icon name="rocket" /></div>
+          <h4>Concurrent Downloads</h4>
+          <p>Download 1, 3, 5, or 10 files simultaneously with intelligent queue scheduling.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><Icon name="shield" /></div>
+          <h4>Anti-Blocking Engine</h4>
+          <p>Random sleep intervals, rate limiting, retries, and fragment retries to avoid detection.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><Icon name="cookies" /></div>
+          <h4>Browser Cookie Detection</h4>
+          <p>Auto-detects cookies from Chrome, Edge, Firefox, Brave, and Opera for authenticated content.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><Icon name="globe" /></div>
+          <h4>8 Languages</h4>
+          <p>English, Español, Français, Deutsch, Português, 中文, 日本語, Italiano.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><Icon name="dark_theme" /></div>
+          <h4>Dark / Light Theme</h4>
+          <p>Full Aether theme support. Toggle with one click.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><Icon name="box" /></div>
+          <h4>Batch Operations</h4>
+          <p>Checkbox selection, Download All, Pause/Resume, Stop, Clear All, Delete key support.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="arrow_download" /> Download types</h2></div>
+      <div style="overflow-x:auto;">
+        <table class="compact-table">
+          <thead>
+            <tr><th>Type</th><th>Quality options</th><th>Format options</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="highlight">Video</td><td>4K, 1080p, 720p, 480p, 360p</td><td>MP4, AVI, WebM, MKV</td></tr>
+            <tr><td class="highlight">Audio</td><td>Best available</td><td>MP3, M4A, Opus, WAV</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="wrench" /> Technologies</h2></div>
+      <div class="card-grid">
+        <div class="card"><h3>.NET 8.0 WPF</h3><p>Application framework</p></div>
+        <div class="card"><h3>yt-dlp</h3><p>Download engine (1800+ sites)</p></div>
+        <div class="card"><h3>WPF-UI 4.3.0</h3><p>Modern UI controls</p></div>
+        <div class="card"><h3>C# 12.0</h3><p>Language</p></div>
+        <div class="card"><h3>CommunityToolkit.Mvvm</h3><p>MVVM architecture</p></div>
+        <div class="card"><h3>NoCloudware.UI.Core</h3><p>Aether theme system</p></div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section>
+      <div class="section-title"><h2><Icon name="globe" /> Available languages</h2></div>
+      <div class="lang-pills">
+        <span class="lang-pill">🇬🇧 English</span>
+        <span class="lang-pill">🇪🇸 Español</span>
+        <span class="lang-pill">🇫🇷 Français</span>
+        <span class="lang-pill">🇩🇪 Deutsch</span>
+        <span class="lang-pill">🇵🇹 Português</span>
+        <span class="lang-pill">🇨🇳 中文</span>
+        <span class="lang-pill">🇯🇵 日本語</span>
+        <span class="lang-pill">🇮🇹 Italiano</span>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section class="text-center">
+      <h2 class="mb-075 fs-lg">Download it free</h2>
+      <p class="text-muted mb-15">No account, no subscription, no cloud.</p>
+      <div class="btn-group">
+        <a class="btn btn-primary" href={release?.downloadUrl ?? "https://github.com/nocloudware/TubeMassDL/releases/latest"} target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="icon-sm">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download from GitHub
+        </a>
+      </div>
+      <div class="req-list mt-075">Windows 10/11 · 64-bit · <span>{release?.sizeMB ?? "~15"}</span> MB</div>
+    </section>
+
+    <hr class="section-divider">
+
+    <div class="donate-section">
+      <h3> Support the creator</h3>
+      <p>NoCloudware is an independent project by <strong>Adrian Goodrich</strong>.</p>
+      <a class="btn btn-donate" href="/donate.html"> Support the project</a>
+    </div>
+
+  </div>
+</div>
+
+</Base>
